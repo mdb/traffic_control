@@ -1,0 +1,24 @@
+language: go
+
+go:
+  - 1.6
+  - tip
+
+install:
+  # install traffic_ops/client dependencies
+  - cd $TRAVIS_BUILD_DIR/traffic_ops/client
+  - go get
+
+script:
+  # test traffic_ops/client
+  - cd $TRAVIS_BUILD_DIR/traffic_ops/client
+  - go test ./tests/
+
+matrix:
+  allow_failures:
+    - go: tip
+
+notifications:
+  email:
+    on_success: never
+    on_failure: always
